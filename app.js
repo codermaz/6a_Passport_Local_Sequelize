@@ -25,6 +25,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
+let connection = require('./models/index.js');
+
 let index = require('./routes/index');
 let users = require('./routes/users');
 let loginChild = require('./routes/loginChild');
@@ -32,14 +34,7 @@ let loginParents = require('./routes/loginParents');
 let newChild = require('./routes/newChild');
 let newParents = require('./routes/newParents');
 let newGroup = require('./routes/newGroup');
-
-app.use('/', index);
-app.use('/users', users);
-app.use('/loginChild', loginChild);
-app.use('/loginParents', loginParents);
-app.use('/newChild', newChild);
-app.use('/newParents', newParents);
-app.use('/newGroup', newGroup);
+let authOk = require('./routes/authOk');
 
 // Cookies erlauben
 app.use(session({
@@ -52,6 +47,16 @@ app.use(session({
 // Passport als Middleware einbringen
 app.use(passport.initialize());
 app.use(passport.session());  // persistent login sessions
+
+app.use('/', index);
+app.use('/users', users);
+app.use('/loginChild', loginChild);
+app.use('/loginParents', loginParents);
+app.use('/newChild', newChild);
+app.use('/newParents', newParents);
+app.use('/newGroup', newGroup);
+app.use('/authOk', authOk);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -72,7 +77,7 @@ app.use(function (err, req, res, next) {
 });
 
 // so kann die App mit node app.js gestartet werden. Der Server läuft ab hier.
-var port = 3000;
+let port = 3000;
 app.listen(port, function () {
     console.log('app listening on port ' + port);
 });

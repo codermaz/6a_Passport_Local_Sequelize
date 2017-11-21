@@ -1,12 +1,5 @@
 let Sequelize = require('sequelize');
-
-// let config    = require('config').database;  // we use node-config to handle environments
-// let sequelize = new Sequelize(
-//     config.name,
-//     config.username,
-//     config.password,
-//     config.options
-// );
+const DataTypes = require('sequelize/lib/data-types');
 
 // initialize database connectionÄ
 const sequelize = new Sequelize ('webapp','userMA3', 'passMA3', {
@@ -29,30 +22,22 @@ sequelize
         console.error('Unable to connect to the database:', err);
     });
 
+// drop all tables in the database 'webapp'
+sequelize.drop();
 
-// load models
-let models = [
-    'Role',
-    'User'
-];
-let UserRole;
-
-//??? position of models
-models.forEach(function(model) {
-    module.exports[model] = sequelize.import(__dirname + '/models/' + model);
+// const FamilyUser = sequelize.import('../models/familyUser');
+let FamilyUser = sequelize.import('familyUser');
+let Account = sequelize.import('account');
+let FamilyUserAccount= sequelize.define('familyUserAccount', {
+    accountType: DataTypes.STRING
 });
 
-// describe relationships
-(function(m) {
-    UserRole = sequelize.define('../models/usersRoles', {
-        status: DataTypes.STRING
-    });
-    m.Users.belongsToMany(Roles, {through: UsersRoles});
-    m.Roles.belongsToMany(Users, {through: UsersRoles});
 
-})(module.exports);
+FamilyUser.belongsToMany(Account, {through: FamilyUserAccount});
+Account.belongsToMany(FamilyUser, {through: FamilyUserAccount});
 
-sequelize.sync().complete((err) => {
+sequelize.sync()
+    .then((err) => {
     if (err) {
         console.log('An error occured while creating table');
     } else {

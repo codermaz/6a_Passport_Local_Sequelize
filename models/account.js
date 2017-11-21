@@ -1,25 +1,21 @@
-
 module.exports = (sequelize, DataTypes) => {
+
     return sequelize.define(
-        'User',
+        'Account',
         {
             id: {
                 type: DataTypes.UUID,
                 defaultValue: DataTypes.UUIDV4,
                 primaryKey: true
             },
-            username: {
-                type: DataTypes.STRING,
-                allowNull: false
-            },
-            password: {
+            accountType: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
         },
         {
             freezeTableName: true,
-            tableName: 'userTable',
+            tableName: 'Account',
             timestamps: true,
             underscored: true
         }

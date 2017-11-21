@@ -15,6 +15,9 @@ passport.use(new LocalStrategy(
     function (username, password, done) {
         console.log(username, password);
         return done(null,true);
+        // SELECT TOP 1 * FROM
+        // return done(null, {user:"hans",roleAdmin:0, roleUser:1});
+
 
 /*        connection.query(sqlFindUserWithPassword, [username, password], (err, result) => {
             if (err) {

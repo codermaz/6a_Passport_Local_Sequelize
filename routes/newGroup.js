@@ -2,6 +2,7 @@ let express = require('express');
 let router = express.Router();
 let passport = require('passport');   // npm i --save passport
 let LocalStrategy = require('passport-local').Strategy;  // npm i --save passport-local
+const FamilyUser = require("sequelize/lib/model");
 
 passport.serializeUser(function (user, done) {
     done(null, user);
@@ -13,22 +14,42 @@ passport.deserializeUser(function (user, done) {
 
 passport.use(new LocalStrategy(
     function (username, password, done) {
-        console.log(username, password);
-        return done(null,true);
 
-/*        connection.query(sqlFindUserWithPassword, [username, password], (err, result) => {
-            if (err) {
-                return done(err);
-            }
-            if (result.length !== 0) {
-                // User / Pwd  stimmt
-                return done(null, true);
-            } else {
-                // User / Pwd falsch
-                return done(null, false);
-            }
-        });
-*/
+            let currentUser = FamilyUser.build({
+                username: 'fam abc',
+                password: '123',
+                email: 'abc@def.com'
+            });
+
+            currentUser.save().then((err)=> {
+                if (err) {
+                    console.log('Error in inserting FamilyUser');
+                } else {
+                    console.log('Product inserted')
+                }
+            });
+
+            console.log(
+                FamilyUser.findAll({
+                    attributes: ['username', 'email']
+                })
+            );
+            return done(null, true);
+
+
+            /*        connection.query(sqlFindUserWithPassword, [username, password], (err, result) => {
+                        if (err) {
+                            return done(err);
+                        }
+                        if (result.length !== 0) {
+                            // User / Pwd  stimmt
+                            return done(null, true);
+                        } else {
+                            // User / Pwd falsch
+                            return done(null, false);
+                        }
+                    });
+            */
     }
 ));
 

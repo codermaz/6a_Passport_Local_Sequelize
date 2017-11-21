@@ -3,9 +3,9 @@
     <envs>
       <env name="DEBUG" value="6a_Passport_Local_Sequelize:*" />
     </envs>
-    <browser start="true" url="http://localhost:3000/" />
+    <browser start="true" url="http://localhost:3000/newParents" />
     <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSStartBrowserRunConfigurationExtension">
-      <browser start="true" url="http://localhost:3000/" />
+      <browser start="true" url="http://localhost:3000/newParents" />
     </EXTENSION>
     <method />
   </configuration>

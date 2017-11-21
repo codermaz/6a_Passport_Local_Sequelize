@@ -1,10 +1,9 @@
 let express = require('express');
 let router = express.Router();
 
-/* GET home page. */
+/* GET users listing. */
 router.get('/', function(req, res, next) {
-
-  res.render('loginChild', { title: 'Express' });
+  res.send('Sie sind herzlich willkommen...');
 });
 
 module.exports = router;

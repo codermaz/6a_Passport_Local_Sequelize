@@ -33,9 +33,9 @@
 
     <header>
         <!--update: inhalt von h1 -->
-        <h1><strong> Schülermotivation </strong> Elternregistrierung-</h1>
+        <h1><strong> Schülermotivation </strong> Familienregistrierung-</h1>
         <!--update: inhalt von h2 -->
-        <h2> Tragen Sie ihre "Registrierungsdaten für Eltern" ein </h2>
+        <h2> Tragen Sie ihre "Registrierungsdaten für Familie" ein </h2>
         <style>
             @import url(http://fonts.googleapis.com/css?family=Raleway:400,700);
 
@@ -59,23 +59,27 @@
         <form class="form-4" action="/newParents" method="post">
             <h1>Registrierung für Familie</h1>
             <p>
-                <label for="login">Benutzername</label>
-                <input type="text" name="login" placeholder="Benutzername " required>
+                <label for="username">Benutzername</label>
+                <input type="text" name="username" placeholder="Benutzername" required>
             </p>
             <p>
                 <label for="email">Email</label>
-                <input type="text" name="login" placeholder="Email" required>
+                <input type="text" name="email" placeholder="Email" required>
             </p>
             <p>
                 <label for="password">Passwort</label>
-                <input type="password" name='password' placeholder="Passwort" required>
+                <input type="password" name="password" placeholder="Passwort" required>
             </p>
             <p>
                 <label for="repassword">Passwort wiederholen</label>
-                <input type="password" name='repassword' placeholder="Passwort wiederholen" required>
+                <input type="password" name="repassword" placeholder="Passwort wiederholen" required>
             </p>
             <p>
-                <input type="submit" name="submit" value="Continue">
+                <label for="accountType">Account</label>
+                <input type="text" name="accountType" placeholder="Account Type" required>
+            </p>
+            <p>
+                <input type="submit" name="submit" value="Registrieren">
             </p>
         </form>
         ​
