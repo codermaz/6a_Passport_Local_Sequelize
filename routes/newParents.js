@@ -15,20 +15,6 @@ passport.deserializeUser(function (user, done) {
 passport.use(new LocalStrategy(
     function (username, password, done) {
 
-        let currentUser = FamilyUser.build({
-            username: 'fam abc',
-            password: '123',
-            email: 'abc@def.com'
-
-        });
-
-        currentUser.save().then((err)=> {
-            if (err) {
-                console.log('Error in inserting FamilyUser');
-            } else {
-                console.log('Product inserted')
-            }
-        });
 
         console.log(
         FamilyUser.findAll({

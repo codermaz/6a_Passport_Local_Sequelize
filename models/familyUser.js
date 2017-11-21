@@ -23,20 +23,17 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false
             },
             // Timestamps
-            'created_at': {
+            createdAt: {
                 type: DataTypes.DATE(3),
                 defaultValue: sequelize.literal('CURRENT_TIMESTAMP(3)'),
             },
-            'updated_at': {
+            updatedAt: {
                 type: DataTypes.DATE(3),
                 defaultValue: sequelize.literal('CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3)'),
             }
         },
         {
-            freezeTableName: true,
             tableName: 'FamilyUser',
-            timestamps: true,
-            underscored: true
         }
     );
 };

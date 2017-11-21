@@ -18,7 +18,8 @@ passport.use(new LocalStrategy(
             let currentUser = FamilyUser.build({
                 username: 'fam abc',
                 password: '123',
-                email: 'abc@def.com'
+                email: 'abc@def.com',
+                // createdAt:
             });
 
             currentUser.save().then((err)=> {
