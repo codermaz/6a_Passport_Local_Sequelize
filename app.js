@@ -9,7 +9,6 @@ let bodyParser = require('body-parser');
 let passport = require('passport');
 let session = require('express-session');  // npm i --save express-session
 
-
 let app = express();
 
 // view engine setup

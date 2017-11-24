@@ -15,14 +15,19 @@ passport.deserializeUser(function (user, done) {
 passport.use(new LocalStrategy(
     function (username, password, done) {
 
+            console.log(username);
+
             let currentUser = FamilyUser.build({
                 username: 'fam abc',
                 password: '123',
-                email: 'abc@def.com',
-                // createdAt:
+                email: 'abc@def.com'
             });
-
-            currentUser.save().then((err)=> {
+        // createdAt: Date.now(),
+        // updatedAt: Date.now()
+            currentUser.save(FamilyUser.build({
+                username: 'fam abc',
+                password: '123'
+            })).then((err)=> {
                 if (err) {
                     console.log('Error in inserting FamilyUser');
                 } else {
